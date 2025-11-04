@@ -31,6 +31,10 @@ export interface Config {
       githubRemote: string;
     }>;
   };
+  extensions?: Record<string, {
+    enabled: boolean;
+    config?: any;
+  }>;
 }
 
 const CONFIG_DIR = path.join(os.homedir(), ".config", "chitty");

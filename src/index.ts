@@ -8,6 +8,13 @@ import { nudgeNow, nudgeQuiet } from "./commands/nudge.js";
 import { checkpoint, listCheckpoints } from "./commands/checkpoint.js";
 import { installZsh, uninstallZsh } from "./commands/hook.js";
 import { syncSetup, syncRun, syncStatus } from "./commands/sync.js";
+import { listExtensions, enableExtension, disableExtension, installExtension } from "./commands/extension.js";
+import { PluginLoader } from "./lib/plugin.js";
+
+// Load plugins early
+const config = (await import("./lib/config.js")).loadConfig();
+const pluginLoader = new PluginLoader(config);
+await pluginLoader.loadAll();
 
 yargs(hideBin(process.argv))
   .scriptName("chitty")
@@ -139,6 +146,62 @@ yargs(hideBin(process.argv))
             if (argv.shell === "zsh") {
               uninstallZsh();
             }
+          }
+        ),
+    () => {
+      yargs.showHelp();
+    }
+  )
+  .command(
+    "ext",
+    "Manage extensions",
+    (yargs) =>
+      yargs
+        .command(
+          "list",
+          "List installed extensions",
+          () => {},
+          async () => {
+            await listExtensions();
+          }
+        )
+        .command(
+          "install <name>",
+          "Install an extension",
+          (yargs) =>
+            yargs.positional("name", {
+              describe: "Extension name",
+              type: "string",
+              demandOption: true
+            }),
+          async (argv) => {
+            await installExtension(argv.name as string);
+          }
+        )
+        .command(
+          "enable <name>",
+          "Enable an extension",
+          (yargs) =>
+            yargs.positional("name", {
+              describe: "Extension name",
+              type: "string",
+              demandOption: true
+            }),
+          async (argv) => {
+            await enableExtension(argv.name as string);
+          }
+        )
+        .command(
+          "disable <name>",
+          "Disable an extension",
+          (yargs) =>
+            yargs.positional("name", {
+              describe: "Extension name",
+              type: "string",
+              demandOption: true
+            }),
+          async (argv) => {
+            await disableExtension(argv.name as string);
           }
         ),
     () => {
