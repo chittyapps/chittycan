@@ -15,14 +15,28 @@ export interface PluginMetadata {
 
 export interface RemoteTypeDefinition {
   type: string;
-  schema: Record<string, any>;
+  name?: string;
+  description?: string;
+  schema?: Record<string, any>;
+  configFields?: Array<{
+    name: string;
+    description: string;
+    required: boolean;
+    sensitive?: boolean;
+    default?: any;
+  }>;
   validate?: (config: any) => boolean | string;
 }
 
 export interface CommandDefinition {
   name: string;
   description: string;
-  handler: (args: any, config: Config) => Promise<void> | void;
+  handler?: (args: any, config: Config) => Promise<void> | void;
+  subcommands?: Record<string, {
+    description: string;
+    handler: (args: any, config: Config) => Promise<void> | void;
+    options?: Record<string, any>;
+  }>;
   options?: Record<string, any>;
 }
 

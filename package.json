@@ -1,9 +1,10 @@
 {
-  "name": "chittytracker",
-  "version": "0.2.0",
-  "description": "Universal infrastructure interface - manage Notion, GitHub, Cloudflare, Neon, Linear and 80+ platforms from one CLI",
+  "name": "chittycan",
+  "version": "0.3.0",
+  "description": "Your completely autonomous network for managing 80+ platforms from one command - Notion, GitHub, Cloudflare, Neon, Linear, and all ChittyOS services",
   "type": "module",
   "bin": {
+    "can": "./dist/index.js",
     "chitty": "./dist/index.js"
   },
   "main": "./dist/index.js",
@@ -18,12 +19,14 @@
     "build": "tsc -p .",
     "dev": "tsc -p . --watch",
     "prepublishOnly": "npm run build && npm run test",
-    "postinstall": "node -e \"console.log('\\\\n✓ ChittyTracker installed! Run: chitty config\\\\n')\"",
+    "postinstall": "node -e \"console.log('\\\\n✓ ChittyCan installed! Run: can config\\\\n')\"",
     "test": "echo \"Tests coming soon\" && exit 0",
     "lint": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
   "keywords": [
+    "chittycan",
+    "can",
     "chitty",
     "notion",
     "github",
@@ -39,15 +42,15 @@
     "sync",
     "automation"
   ],
-  "author": "ChittyTracker Team",
+  "author": "ChittyCan Team",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/chittytracker.git"
+    "url": "https://github.com/YOUR_USERNAME/chittycan.git"
   },
-  "homepage": "https://github.com/YOUR_USERNAME/chittytracker#readme",
+  "homepage": "https://github.com/YOUR_USERNAME/chittycan#readme",
   "bugs": {
-    "url": "https://github.com/YOUR_USERNAME/chittytracker/issues"
+    "url": "https://github.com/YOUR_USERNAME/chittycan/issues"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^0.5.0",

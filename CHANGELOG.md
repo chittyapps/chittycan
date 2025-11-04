@@ -1,9 +1,76 @@
 # Changelog
 
-All notable changes to ChittyTracker will be documented in this file.
+All notable changes to ChittyCan will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.3.0] - 2024-11-04
+
+### Changed - 🎉 REBRAND: ChittyTracker → ChittyCan
+
+**Breaking Changes**
+- 🔄 Package renamed from `chittytracker` → `chittycan`
+- 🔄 Primary binary renamed from `chitty` → `can` (chitty remains as alias)
+- 🔄 Repository URLs updated to reflect new name
+
+**Philosophy**
+- ✨ "Can you...?" → "Yes you can!" - More active, empowering branding
+- ✨ Completely autonomous network for platform navigation
+- ✨ C.A.N. easter egg: Chitty Autonomous Navigator / Completely Autonomous Network
+- ✨ Updated all documentation with new ChittyCan identity
+- ✨ Installation message now suggests `can config` instead of `chitty config`
+
+### Added - ChittyOS Services Integration
+
+**New Extensions**
+- ✨ `chittyconnect` - MCP server management, integrations, GitHub App, OpenAPI, proxies
+- ✨ `chittyregistry` - Tool/script registry, service discovery, analytics
+- ✨ `chittyrouter` - AI email gateway, multi-agent orchestration (Triage, Priority, Response, Document)
+
+**Commands Added**
+```bash
+# ChittyConnect
+can connect mcp start/stop/status/tools
+can connect integrations list/add/test
+can connect github webhooks/sync
+can connect openapi export
+can connect proxy notion/openai/gcal
+
+# ChittyRegistry
+can registry tools list/register/search
+can registry services list/register/discover
+can registry service health
+can registry scripts list/execute
+
+# ChittyRouter
+can router inbox list/process/stats
+can router agents list/invoke/history
+can router rules list/create/test
+can router models test/fallback-chain
+can router analytics routing/agents
+```
+
+**Architecture**
+- 🏗️ Unified ChittyOS plugin namespace
+- 🏗️ All 5 ChittyOS core services integrated (ID, Auth, Connect, Registry, Router)
+- 🏗️ Enhanced plugin system with subcommands support
+- 🏗️ Remote type definitions with configFields
+
+**Migration Guide**
+```bash
+# Uninstall old package
+npm uninstall -g chittytracker
+
+# Install new package
+npm install -g chittycan
+
+# Use new primary command
+can config
+
+# Or use familiar alias
+chitty config
+```
 
 ## [0.2.0] - 2024-11-04
 
@@ -13,7 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ✨ Dynamic plugin loading architecture
 - ✨ Plugin lifecycle management (init/enable/disable)
 - ✨ Command and remote type registration
-- ✨ `chitty ext list/install/enable/disable` commands
+- ✨ `can ext list/install/enable/disable` commands
 
 **Extensions**
 - ✨ `@chitty/cloudflare` - Workers, KV, R2, DNS management
@@ -21,7 +88,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ✨ `@chitty/linear` - Issue tracking and GraphQL API
 
 **Developer Experience**
-- ✨ `chitty doctor` - Environment validation and health checks
+- ✨ `can doctor` - Environment validation and health checks
 - ✨ MCP server skeleton for AI integration
 - ✨ GitHub Actions CI/CD workflows
 - ✨ Cross-platform smoke tests (macOS, Linux, Windows)
@@ -55,12 +122,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ✨ Checkpoint logging system
 
 **Commands**
-- `chitty config` - Interactive configuration
-- `chitty open <name> [view]` - Open remotes
-- `chitty nudge now` - Interactive nudge
-- `chitty checkpoint [msg]` - Log milestones
-- `chitty sync setup/run/status` - Two-way sync
-- `chitty hook install/uninstall zsh` - Shell integration
+- `can config` (or `chitty config`) - Interactive configuration
+- `can open <name> [view]` - Open remotes
+- `can nudge now` - Interactive nudge
+- `can checkpoint [msg]` - Log milestones
+- `can sync setup/run/status` - Two-way sync
+- `can hook install/uninstall zsh` - Shell integration
 
 **Documentation**
 - 📚 README.md - Complete feature overview
@@ -101,5 +168,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-[0.2.0]: https://github.com/YOUR_USERNAME/chittytracker/releases/tag/v0.2.0
-[0.1.0]: https://github.com/YOUR_USERNAME/chittytracker/releases/tag/v0.1.0
+[0.3.0]: https://github.com/YOUR_USERNAME/chittycan/releases/tag/v0.3.0
+[0.2.0]: https://github.com/YOUR_USERNAME/chittycan/releases/tag/v0.2.0
+[0.1.0]: https://github.com/YOUR_USERNAME/chittycan/releases/tag/v0.1.0

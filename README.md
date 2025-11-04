@@ -1,8 +1,10 @@
-# ChittyTracker
+# ChittyCan
 
-**Universal infrastructure and project management CLI for the ChittyOS ecosystem**
+**"Can you...?" → "Yes you can!"**
 
-ChittyTracker is a unified command-line tool that helps you manage every aspect of your development workflow:
+Your completely autonomous network that navigates universal infrastructure and project management across the ChittyOS ecosystem
+
+ChittyCan is a unified command-line tool that helps you manage every aspect of your development workflow:
 
 - 📋 **Project Tracking** - Sync between Notion databases and GitHub Projects
 - ☁️ **Cloud Infrastructure** - Manage Cloudflare Workers, DNS, KV, R2, Durable Objects
@@ -16,12 +18,15 @@ ChittyTracker is a unified command-line tool that helps you manage every aspect 
 
 ```bash
 # Install globally
-npm install -g chittytracker
+npm install -g chittycan
 
 # Or run directly
-npx chittytracker
+npx chittycan
 
 # Initialize with interactive config
+can config
+
+# Both 'can' and 'chitty' commands work
 chitty config
 ```
 
@@ -33,7 +38,7 @@ Interactive `rclone`-style config for managing "remotes" (Notion databases, GitH
 
 ```bash
 # Open interactive config menu
-chitty config
+can config
 
 # Add a Notion database remote
 # Choose: New remote → Notion database
@@ -43,11 +48,11 @@ chitty config
 # Choose: New remote → GitHub project
 
 # List all remotes
-chitty remote list
+can remote list
 
 # Open a remote
-chitty open tracker
-chitty open tracker actions  # Open specific view
+can open tracker
+can open tracker actions  # Open specific view
 ```
 
 ### 2. Smart Shell Hooks
@@ -56,7 +61,7 @@ Get reminded to update your tracker after important commands:
 
 ```bash
 # Install zsh hooks
-chitty hook install zsh
+can hook install zsh
 
 # Now you'll get nudges after:
 # - git commit
@@ -76,16 +81,16 @@ Keep your Notion Actions and GitHub Issues in perfect sync:
 
 ```bash
 # Setup sync (interactive)
-chitty sync setup
+can sync setup
 
 # Preview changes without applying
-chitty sync run --dry-run
+can sync run --dry-run
 
 # Run sync
-chitty sync run
+can sync run
 
 # Check sync status
-chitty sync status
+can sync status
 ```
 
 **Mapping:**
@@ -103,61 +108,61 @@ chitty sync status
 
 ```bash
 # Cloudflare Workers
-chitty cf worker list
-chitty cf worker deploy chittyauth --env production
-chitty cf worker tail chittyconnect
-chitty cf worker secrets set chittyauth JWT_SECRET
+can cf worker list
+can cf worker deploy chittyauth --env production
+can cf worker tail chittyconnect
+can cf worker secrets set chittyauth JWT_SECRET
 
 # DNS
-chitty cf dns list chitty.cc
-chitty cf dns add chitty.cc A new-service 1.2.3.4
+can cf dns list chitty.cc
+can cf dns add chitty.cc A new-service 1.2.3.4
 
 # KV / R2
-chitty cf kv list --namespace CACHE
-chitty cf r2 list --bucket documents
+can cf kv list --namespace CACHE
+can cf r2 list --bucket documents
 ```
 
 ### 5. Database Management (Coming Soon)
 
 ```bash
 # List databases
-chitty neon db list
+can neon db list
 
 # Run migrations
-chitty neon migrate up
-chitty neon migrate down
+can neon migrate up
+can neon migrate down
 
 # Schema diff
-chitty neon schema diff production staging
+can neon schema diff production staging
 
 # Quick query
-chitty neon query "SELECT * FROM identities LIMIT 5"
+can neon query "SELECT * FROM identities LIMIT 5"
 ```
 
 ### 6. MCP & AI Configuration (Coming Soon)
 
 ```bash
 # List installed MCP servers
-chitty mcp list
+can mcp list
 
 # Install a new MCP server
-chitty mcp install @modelcontextprotocol/server-filesystem
+can mcp install @modelcontextprotocol/server-filesystem
 
 # Configure Claude Code
-chitty claude config
-chitty claude remote add my-api https://api.example.com
+can claude config
+can claude remote add my-api https://api.example.com
 ```
 
 ### 7. Storage & Sync (Coming Soon)
 
 ```bash
 # rclone integration
-chitty rclone remote add gdrive
-chitty rclone sync local:./docs gdrive:/ChittyOS/docs
+can rclone remote add gdrive
+can rclone sync local:./docs gdrive:/ChittyOS/docs
 
 # Google Drive organization
-chitty gdrive tree
-chitty gdrive mkdir "ChittyOS/Projects"
+can gdrive tree
+can gdrive mkdir "ChittyOS/Projects"
 ```
 
 ## Installation
@@ -165,14 +170,14 @@ chitty gdrive mkdir "ChittyOS/Projects"
 ### Global Installation
 
 ```bash
-npm install -g chittytracker
+npm install -g chittycan
 ```
 
 ### Local Development
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/chittytracker
-cd chittytracker
+git clone https://github.com/YOUR_USERNAME/chittycan
+cd chittycan
 npm install
 npm run build
 npm link
@@ -224,33 +229,33 @@ All config is stored in `~/.config/chitty/config.json`:
 ### General
 
 ```bash
-chitty config                    # Interactive config menu
-chitty remote list               # List all remotes
-chitty open <name> [view]        # Open remote in browser
+can config                    # Interactive config menu
+can remote list               # List all remotes
+can open <name> [view]        # Open remote in browser
 ```
 
 ### Tracking & Nudges
 
 ```bash
-chitty nudge now                 # Interactive nudge
-chitty nudge quiet               # Quick reminder
-chitty checkpoint [message]      # Save checkpoint
-chitty checkpoints [limit]       # List recent checkpoints
+can nudge now                 # Interactive nudge
+can nudge quiet               # Quick reminder
+can checkpoint [message]      # Save checkpoint
+can checkpoints [limit]       # List recent checkpoints
 ```
 
 ### Shell Hooks
 
 ```bash
-chitty hook install zsh          # Install zsh hooks
-chitty hook uninstall zsh        # Uninstall zsh hooks
+can hook install zsh          # Install zsh hooks
+can hook uninstall zsh        # Uninstall zsh hooks
 ```
 
 ### Sync
 
 ```bash
-chitty sync setup                # Configure sync
-chitty sync run [--dry-run]      # Run sync
-chitty sync status               # Show sync config
+can sync setup                # Configure sync
+can sync run [--dry-run]      # Run sync
+can sync status               # Show sync config
 ```
 
 ## Setup Guides
@@ -264,7 +269,7 @@ chitty sync status               # Show sync config
 ### CLI Structure
 
 ```
-chittytracker/
+chittycan/
 ├── src/
 │   ├── commands/          # Command implementations
 │   │   ├── config.ts      # Interactive rclone-style config
@@ -282,7 +287,7 @@ chittytracker/
 │   └── zsh/               # Shell snippets
 │       └── snippets.zsh   # Zsh hooks
 ├── bin/
-│   └── chitty.js          # CLI entry point
+│   └── can.js             # CLI entry point
 └── tests/                 # Test suite
 ```
 
@@ -296,13 +301,13 @@ Coming soon - web dashboard for:
 
 ### Future: MCP Server
 
-Expose ChittyTracker via Model Context Protocol:
+Expose ChittyCan via Model Context Protocol:
 
 ```json
 {
   "mcpServers": {
-    "chitty": {
-      "command": "chitty",
+    "chittycan": {
+      "command": "can",
       "args": ["mcp"]
     }
   }
@@ -351,6 +356,23 @@ Contributions welcome! Please:
 ## License
 
 MIT
+
+## Philosophy
+
+**C.A.N. has dual meanings:**
+
+1. **Chitty Autonomous Navigator** - Emphasizes autonomous navigation across platforms
+2. **ChittyCan Completely Autonomous Network** - Emphasizes the self-managing networked ecosystem
+
+**"Can you...?" → "Yes you can!"**
+
+ChittyCan embodies the spirit of empowerment - it's your completely autonomous network that seamlessly navigates across platforms, managing infrastructure, syncing data, and keeping you productive. When someone asks "Can you manage my cloud infrastructure from the command line?" or "Can you keep my Notion and GitHub in sync?", the answer is always a confident **"Yes you can!"**
+
+The name works on multiple levels:
+- 🤖 **Completely Autonomous** - Smart nudges, auto-sync, proactive reminders, self-managing agents
+- 🌐 **Network** - Interconnected ecosystem of ChittyOS services + 80+ external platforms
+- 🧭 **Navigator** - Seamlessly moves between Notion, GitHub, Cloudflare, Neon, Linear, and more
+- ✅ **Can** - Empowering affirmation that you can accomplish anything
 
 ## Related Projects
 
