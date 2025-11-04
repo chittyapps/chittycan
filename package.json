@@ -1,11 +1,10 @@
 {
   "name": "chittycan",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Your completely autonomous network for managing 80+ platforms from one command - Notion, GitHub, Cloudflare, Neon, Linear, and all ChittyOS services",
   "type": "module",
   "bin": {
-    "can": "./dist/index.js",
-    "chitty": "./dist/index.js"
+    "can": "dist/index.js"
   },
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -28,7 +27,6 @@
   "keywords": [
     "chittycan",
     "can",
-    "chitty",
     "notion",
     "github",
     "cloudflare",
@@ -47,16 +45,18 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/chittycan.git"
+    "url": "git+https://github.com/chittyapps/chittycan.git"
   },
-  "homepage": "https://github.com/YOUR_USERNAME/chittycan#readme",
+  "homepage": "https://github.com/chittyapps/chittycan#readme",
   "bugs": {
-    "url": "https://github.com/YOUR_USERNAME/chittycan/issues"
+    "url": "https://github.com/chittyapps/chittycan/issues"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^0.5.0",
     "@notionhq/client": "^2.2.14",
     "@octokit/rest": "^20.0.2",
+    "chalk": "^5.6.2",
+    "chittycan": "^0.3.0",
     "inquirer": "^9.2.12",
     "yargs": "^17.7.2"
   },
@@ -65,6 +65,6 @@
     "@types/node": "^20.10.6",
     "@types/yargs": "^17.0.32",
     "typescript": "^5.6.3",
-    "vitest": "^1.1.0"
+    "vitest": "^4.0.6"
   }
 }

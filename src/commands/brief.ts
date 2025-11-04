@@ -3,7 +3,7 @@
  * Show the context any AI would get when popping on
  */
 
-import { generateStemcellBrief, formatStemcellBrief } from "@/lib/stemcell";
+import { generateStemcellBrief, formatStemcellBrief } from "../lib/stemcell.js";
 
 export async function briefCommand(args: any) {
   const projectPath = args.project || process.cwd();
@@ -28,7 +28,7 @@ export async function briefCommand(args: any) {
 }
 
 export async function quickBriefCommand() {
-  const { getQuickBrief } = await import("@/plugins/ai/stemcell-integration");
+  const { getQuickBrief } = await import("../plugins/ai/stemcell-integration.js");
   const brief = await getQuickBrief();
   console.log(brief);
 }

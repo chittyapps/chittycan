@@ -11,14 +11,33 @@ import { syncSetup, syncRun, syncStatus } from "./commands/sync.js";
 import { listExtensions, enableExtension, disableExtension, installExtension } from "./commands/extension.js";
 import { PluginLoader } from "./lib/plugin.js";
 import { doctor } from "./commands/doctor.js";
+import { briefCommand } from "./commands/brief.js";
+import { proxyToChitty, isSupportedCLI } from "./lib/chitty-proxy.js";
 
 // Load plugins early
 const config = (await import("./lib/config.js")).loadConfig();
 const pluginLoader = new PluginLoader(config);
 await pluginLoader.loadAll();
 
-yargs(hideBin(process.argv))
-  .scriptName("chitty")
+// Check for unknown commands before yargs processes them
+const args = hideBin(process.argv);
+const knownCommands = ["config", "brief", "remote", "open", "nudge", "checkpoint", "checkpoints", "hook", "ext", "doctor", "sync"];
+const firstArg = args[0];
+
+// If first arg is a supported CLI (gh, docker, etc), always proxy to chitty for natural language interpretation
+if (firstArg && isSupportedCLI(firstArg)) {
+  proxyToChitty(args);
+  process.exit(0); // Won't reach here if proxyToChitty succeeds
+}
+
+// If first arg is a command (not a flag) and it's not known, proxy to chitty
+if (firstArg && !firstArg.startsWith("-") && !knownCommands.includes(firstArg)) {
+  proxyToChitty(args);
+  process.exit(0); // Won't reach here if proxyToChitty succeeds
+}
+
+yargs(args)
+  .scriptName("can")
   .usage("$0 <command> [options]")
   .command(
     "config",
@@ -26,6 +45,14 @@ yargs(hideBin(process.argv))
     () => {},
     async () => {
       await configMenu();
+    }
+  )
+  .command(
+    "brief",
+    "Show stemcell brief (what AI sees about this project)",
+    () => {},
+    async (argv) => {
+      await briefCommand(argv);
     }
   )
   .command(
@@ -255,6 +282,20 @@ yargs(hideBin(process.argv))
       yargs.showHelp();
     }
   )
+  .fail((msg, err, yargs) => {
+    // Handle unknown arguments within known commands (e.g., "can sync gh")
+    if (msg && msg.includes("Unknown argument")) {
+      const args = hideBin(process.argv);
+      console.log(); // Add spacing
+      proxyToChitty(args);
+      return; // Exit handled by proxyToChitty
+    }
+    // For other errors, show help
+    if (msg) console.error(msg);
+    if (err) console.error(err);
+    yargs.showHelp();
+    process.exit(1);
+  })
   .demandCommand(1, "You must provide a command")
   .strict()
   .help()

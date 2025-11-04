@@ -1,7 +1,7 @@
 #!/bin/bash
 # ChittyCan Validation Script
 
-echo "🔍 ChittyCan v0.3.0 Validation"
+echo "🔍 ChittyCan v0.4.0 Validation"
 echo "=============================="
 echo ""
 
@@ -128,17 +128,14 @@ echo "--------------------"
 grep -q '"name": "chittycan"' package.json
 check "Package name: chittycan"
 
-grep -q '"version": "0.3.0"' package.json
-check "Version: 0.3.0"
+grep -q '"version": "0.4.0"' package.json
+check "Version: 0.4.0"
 
 grep -q '"author": "chittycorp"' package.json
 check "Author: chittycorp"
 
 grep -q '"can":' package.json
 check "Binary: can"
-
-grep -q '"chitty":' package.json
-check "Binary alias: chitty"
 
 echo ""
 
