@@ -260,6 +260,7 @@ can sync status               # Show sync config
 
 ## Setup Guides
 
+- **[Multi-Model Architecture](./MULTI_MODEL.md)** - Pop any AI model at any juncture
 - **[GitHub App Setup](./GITHUB_APP.md)** - Create GitHub App for webhooks and API access
 - **[Notion Integration](./GITHUB_APP.md#notion-integration-setup)** - Connect Notion databases
 - **[Two-Way Sync](./GITHUB_APP.md#testing-the-setup)** - Configure bidirectional sync
@@ -373,6 +374,66 @@ The name works on multiple levels:
 - 🌐 **Network** - Interconnected ecosystem of ChittyOS services + 80+ external platforms
 - 🧭 **Navigator** - Seamlessly moves between Notion, GitHub, Cloudflare, Neon, Linear, and more
 - ✅ **Can** - Empowering affirmation that you can accomplish anything
+
+## 🚀 Model-Agnostic Networked Async Workstream
+
+**The killer feature:** You can pop **any AI model** at **any juncture** in your networked async workstream and it just works.
+
+### Multi-Model Architecture
+
+```
+Your Workflow:
+  ┌─────────────┐
+  │   Task 1    │ ─── Claude Sonnet (code generation)
+  └─────────────┘
+         │
+  ┌─────────────┐
+  │   Task 2    │ ─── GPT-4 (analysis via ChittyConnect proxy)
+  └─────────────┘
+         │
+  ┌─────────────┐
+  │   Task 3    │ ─── Llama Scout (routing via ChittyRouter)
+  └─────────────┘
+         │
+  ┌─────────────┐
+  │   Task 4    │ ─── Claude Code (implementation)
+  └─────────────┘
+```
+
+**Why this matters:**
+- 🎯 **Right tool for the job** - Use the best model for each specific task
+- 💰 **Cost optimization** - Cheap models for simple tasks, powerful models for complex ones
+- 🔄 **No lock-in** - Switch providers without changing your workflow
+- ⚡ **Async + Networked** - Models work on different tasks simultaneously across the network
+- 🛡️ **Resilience** - If one model is down, fallback chain kicks in automatically
+
+### Example: Multi-Model Legal Case Processing
+
+```bash
+# Step 1: ChittyRouter uses Llama Scout to triage incoming email
+can router inbox process --agent triage
+
+# Step 2: ChittyConnect proxies to GPT-4 for document analysis
+can connect proxy openai "Analyze this contract for key terms"
+
+# Step 3: Local Claude Code generates response
+can router agent invoke response --email abc123 --draft
+
+# Step 4: ChittyID mints credential with any available model
+can id credential issue --type VerifiedDocument
+
+# All working together in one async networked workflow ✨
+```
+
+### Supported Integration Points
+
+**Any model can plug into:**
+- 📧 **ChittyRouter agents** - Email triage, priority, response, document analysis
+- 🔌 **ChittyConnect proxies** - OpenAI, Anthropic, local models
+- 🤖 **MCP servers** - Claude Code, Claude Desktop, custom tools
+- 📝 **Smart nudges** - Local AI suggesting what to update
+- 🔄 **Sync engine** - AI-powered conflict resolution
+- 🎯 **ChittyRegistry scripts** - Model-driven automation
 
 ## Related Projects
 
