@@ -35,6 +35,9 @@ export interface Config {
     enabled: boolean;
     config?: any;
   }>;
+  mcp?: {
+    writeEnabled?: boolean;
+  };
 }
 
 const CONFIG_DIR = path.join(os.homedir(), ".config", "chitty");

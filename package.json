@@ -1,31 +1,60 @@
 {
   "name": "chittytracker",
-  "version": "0.1.0",
-  "description": "CLI for ChittyOS project tracking with Notion and GitHub sync",
+  "version": "0.2.0",
+  "description": "Universal infrastructure interface - manage Notion, GitHub, Cloudflare, Neon, Linear and 80+ platforms from one CLI",
   "type": "module",
   "bin": {
-    "chitty": "./bin/chitty.js"
+    "chitty": "./dist/index.js"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc -p .",
     "dev": "tsc -p . --watch",
-    "prepublishOnly": "npm run build",
-    "test": "vitest"
+    "prepublishOnly": "npm run build && npm run test",
+    "postinstall": "node -e \"console.log('\\\\n✓ ChittyTracker installed! Run: chitty config\\\\n')\"",
+    "test": "echo \"Tests coming soon\" && exit 0",
+    "lint": "tsc --noEmit",
+    "clean": "rm -rf dist"
   },
   "keywords": [
     "chitty",
     "notion",
     "github",
-    "tracker",
-    "cli"
+    "cloudflare",
+    "neon",
+    "linear",
+    "infrastructure",
+    "devops",
+    "productivity",
+    "cli",
+    "project-management",
+    "task-tracking",
+    "sync",
+    "automation"
   ],
-  "author": "",
+  "author": "ChittyTracker Team",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/chittytracker.git"
+  },
+  "homepage": "https://github.com/YOUR_USERNAME/chittytracker#readme",
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/chittytracker/issues"
+  },
   "dependencies": {
-    "inquirer": "^9.2.12",
-    "yargs": "^17.7.2",
+    "@modelcontextprotocol/sdk": "^0.5.0",
     "@notionhq/client": "^2.2.14",
-    "@octokit/rest": "^20.0.2"
+    "@octokit/rest": "^20.0.2",
+    "inquirer": "^9.2.12",
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.7",

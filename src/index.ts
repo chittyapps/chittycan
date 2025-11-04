@@ -10,6 +10,7 @@ import { installZsh, uninstallZsh } from "./commands/hook.js";
 import { syncSetup, syncRun, syncStatus } from "./commands/sync.js";
 import { listExtensions, enableExtension, disableExtension, installExtension } from "./commands/extension.js";
 import { PluginLoader } from "./lib/plugin.js";
+import { doctor } from "./commands/doctor.js";
 
 // Load plugins early
 const config = (await import("./lib/config.js")).loadConfig();
@@ -206,6 +207,14 @@ yargs(hideBin(process.argv))
         ),
     () => {
       yargs.showHelp();
+    }
+  )
+  .command(
+    "doctor",
+    "Check environment and configuration",
+    () => {},
+    async () => {
+      await doctor();
     }
   )
   .command(
